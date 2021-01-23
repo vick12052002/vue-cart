@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <title>vue-demo</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1 class="header-title">購物清單</h1>
+    <main class="container">
+      <div class="add-item-form">
+        <h3 class="title">新增單筆</h3>
+        <div class="inputs">
+          <label class="input-container" for="name">名稱
+            <input type="text" name="name" v-model.trim="input.name">
+            <span class="error-message">名稱不得為空</span>
+          </label>
+          <label class="input-container" for="price">價格
+            <input type="number" name="price" v-model="input.price">
+            <span class="error-message">請輸入數量</span>
+          </label>
+          <label class="input-container" for="amount">數量
+            <input type="number" name="amount" v-model="input.amount">
+            <span class="error-message">請輸入數量</span>
+          </label>
+          <button class="submit-btn btn" @click="addItem()" @keyup.enter="addItem()">新增</button>
+        </div>
+      </div>
+      <div class="item-list-container">
+        <h3 class="title">清單</h3>
+        <div class="list-title-container">
+          <div class="list-title item-name">名稱</div>
+          <div class="list-title">單價</div>
+          <div class="list-title">數量</div>
+          <div class="list-title"></div>
+
+        </div>
+        <div class="list-item item-name" v-if="itemList.length === 0">清單為空</div>
+        <div class="item-container" v-for="item in itemList">
+          <div class="list-item item-name">{{ item.name }}</div>
+          <div class="list-item">{{ item.price }}</div>
+          <div class="list-item">{{ item.amount }}</div>
+          <button class="delete-btn btn" @click="deleteItem(item.id)">刪除</button>
+        </div>
+      </div>
+      <div class="item-list-container">
+        <div class="total-container">
+          <span class="total">總計：{{total}}</span>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js'></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+  <!-- <script src="https://cdn.staticfile.org/vue/2.5.2/vue.min.js"></script> -->
+  <script src="index.js"></script>
+</body>
+
+</html>
